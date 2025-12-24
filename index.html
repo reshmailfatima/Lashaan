@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lashaan - Premium Eastern Wear for Men</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Top Banner -->
+    <div class="top-banner">
+        FREE SHIPPING ON ORDERS ABOVE RS. 5000
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">LASHAAN</div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Eastern Wear</a></li>
+                <li><a href="#accessories">Accessories</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <div class="nav-icons">
+                <i class="fas fa-search" onclick="toggleSearch()"></i>
+                <div style="position: relative;">
+                    <i class="fas fa-shopping-bag" onclick="toggleCart()"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Search Bar -->
+        <div class="search-bar" id="searchBar">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search products..." onkeyup="searchProducts()">
+                <button class="search-close" onclick="toggleSearch()">×</button>
+            </div>
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/background-image.png');">
+        <!-- Empty hero banner - just the image -->
+    </section>
+
+    <!-- Hero Content Below Banner -->
+    <section class="hero-content-below">
+        <div class="hero-content">
+            <a href="#products" class="cta-button">Shop Collection</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="products-header">
+            <button class="filter-btn">
+                <i class="fas fa-filter"></i>
+                Filter
+            </button>
+            <div class="sort-dropdown">
+                <select>
+                    <option>Featured</option>
+                    <option>Price: Low to High</option>
+                    <option>Price: High to Low</option>
+                    <option>Newest</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('images/Black1.jpeg');">
+                    <span class="premium-badge">Premium</span>
+                    <button class="wishlist-btn">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <button class="quick-add" onclick="event.stopPropagation(); addToCart('Black Elite Embroidered Men’s Suit', 10999)">Quick Add</button>
+                </div>
+                <div class="product-info">
+                    <h3>Black Elite Embroidered Men’s Suit</h3>
+                    <p class="product-price">Rs. 10,999</p>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('images/Brown2.jpeg');">
+                    <button class="wishlist-btn">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <button class="quick-add" onclick="event.stopPropagation(); addToCart('Amberwood Brown Orange Blended Suit', 6750)">Quick Add</button>
+                </div>
+                <div class="product-info">
+                    <h3>Amberwood Brown Orange Blended Suit</h3>
+                    <p class="product-price">Rs. 6,750</p>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('images/Green1.jpeg');">
+                    <button class="wishlist-btn">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <button class="quick-add" onclick="event.stopPropagation(); addToCart('Olive Regal Stitch Suit', 6350)">Quick Add</button>
+                </div>
+                <div class="product-info">
+                    <h3>Olive Regal Stitch Suit</h3>
+                    <p class="product-price">Rs. 6,350</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="coming-soon-products">
+            <h3>More Collections Coming Soon</h3>
+            <p>We're working on bringing you more premium eastern wear collections. Stay tuned!</p>
+        </div>
+    </section>
+
+    <!-- Accessories Section -->
+    <section class="coming-soon" id="accessories">
+        <div class="container">
+            <h2>Accessories</h2>
+            <p>Coming Soon</p>
+            <p class="coming-soon-description">We're working on bringing you premium accessories to complement your eastern wear. Stay tuned!</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <h2>About Lashaan</h2>
+            <div class="about-content">
+                <p>Lashaan is a premium eastern wear brand dedicated to bringing you the finest collection of traditional men's clothing with a contemporary touch. We believe in celebrating heritage while embracing modernity.</p>
+                <p>Our carefully curated collections feature premium fabrics, intricate craftsmanship, and designs that honor the rich traditions of Pakistani fashion. From everyday wear to special occasions, Lashaan offers eastern wear that makes you look and feel exceptional.</p>
+                <p>Every piece in our collection is designed and manufactured in Pakistan, supporting local artisans and ensuring authentic craftsmanship in every stitch.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h3>Free Shipping</h3>
+                    <p>Complimentary shipping on all orders below Rs. 5000 across Pakistan</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-medal"></i>
+                    <h3>Premium Quality</h3>
+                    <p>Finest fabrics and traditional craftsmanship with contemporary design</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>Customer Support</h3>
+                    <p>Dedicated customer service team available via WhatsApp and email</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Made in Pakistan</h3>
+                    <p>Proudly designed and manufactured in Pakistan with authentic craftsmanship</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Sign Up and Save</h2>
+            <p>Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>
+            <form class="newsletter-form" onsubmit="return subscribeNewsletter(event)">
+                <input type="email" id="newsletterEmail" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <ul>
+                        <li><a href="javascript:void(0);" onclick="showOurStory()">Our Story</a></li>
+                        <li><a href="javascript:void(0);" onclick="showContactInfo()">Contact Us</a></li>
+                        <li><a href="javascript:void(0);" onclick="showFAQs()">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="mailto:lashaan.offical@gmail.com">Email: lashaan.offical@gmail.com</a></li>
+                        <li><a href="#returns" onclick="showReturnsExchange(); return false;">Returns / Exchanges</a></li>
+                        <li><a href="#size-guide" onclick="showSizeGuide(); return false;">Size Guide</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/lashaan.official/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/share/17hEgJH57D/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Lashaan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart" onclick="toggleCart()">×</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                Your cart is empty
+            </div>
+        </div>
+        <div class="cart-total" id="cartTotal" style="display: none;">
+            <div class="cart-total-row">
+                <span>Subtotal:</span>
+                <span id="subtotal">Rs. 0</span>
+            </div>
+            <div class="cart-total-row">
+                <span>Shipping:</span>
+                <span>Free</span>
+            </div>
+            <div class="cart-total-row total">
+                <span>Total:</span>
+                <span id="total">Rs. 0</span>
+            </div>
+        </div>
+        <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">×</button>
+        
+        <button class="lightbox-nav lightbox-nav-left" onclick="event.stopPropagation(); navigateLightbox('prev')">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <div class="lightbox-image-container">
+                <img id="lightboxImage" src="" alt="">
+            </div>
+            <div class="lightbox-info">
+                <h3 id="lightboxTitle"></h3>
+                <p id="lightboxPrice"></p>
+                <div class="lightbox-indicators" id="lightboxIndicators"></div>
+            </div>
+        </div>
+        
+        <button class="lightbox-nav lightbox-nav-right" onclick="event.stopPropagation(); navigateLightbox('next')">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <!-- Info Modal -->
+    <div class="info-modal" id="infoModal" onclick="closeInfoModal()">
+        <div class="info-modal-content" onclick="event.stopPropagation()">
+            <button class="info-modal-close" onclick="closeInfoModal()">×</button>
+            <h2 id="infoModalTitle"></h2>
+            <div id="infoModalBody"></div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="checkout-modal" id="checkoutModal" onclick="closeCheckoutModal()">
+        <div class="checkout-modal-content" onclick="event.stopPropagation()">
+            <button class="checkout-modal-close" onclick="closeCheckoutModal()">×</button>
+            <h2>Complete Your Order</h2>
+            
+            <form id="checkoutForm" onsubmit="return submitCheckout(event)">
+                <div class="form-group">
+                    <label for="customerName">Full Name *</label>
+                    <input type="text" id="customerName" required placeholder="Enter your full name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="customerPhone">Phone Number *</label>
+                    <input type="tel" id="customerPhone" required placeholder="+92 3XX XXXXXXX" pattern="[0-9+\s-]+">
+                </div>
+                
+                <div class="form-group">
+                    <label for="customerAddress">Complete Address *</label>
+                    <textarea id="customerAddress" required placeholder="House/Flat no., Street, Area, City" rows="3"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="customerCity">City *</label>
+                    <input type="text" id="customerCity" required placeholder="Enter your city">
+                </div>
+                
+                <div class="form-group">
+                    <label for="customerNotes">Additional Notes (Optional)</label>
+                    <textarea id="customerNotes" placeholder="Any special instructions for delivery" rows="2"></textarea>
+                </div>
+                
+                <div class="payment-info">
+                    <h3>Payment Method</h3>
+                    <div class="payment-method">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>Cash on Delivery (COD)</span>
+                    </div>
+                </div>
+                
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="checkoutSubtotal">Rs. 0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Delivery Charges:</span>
+                        <span id="checkoutDelivery">Rs. 0</span>
+                    </div>
+                    <div class="summary-row total-row">
+                        <span>Total Amount:</span>
+                        <span id="checkoutTotal">Rs. 0</span>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-order-btn">
+                    <i class="fab fa-whatsapp"></i> Confirm Order via WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

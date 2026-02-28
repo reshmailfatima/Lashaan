@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lashaan - Premium Eastern Wear for Men</title>
+    <link rel="icon" type="image/jpeg" href="images/logo.jpeg">
+    <link rel="apple-touch-icon" href="images/logo.jpeg">
+    <meta name="description" content="Lashaan is a premium eastern wear brand dedicated to bringing you the finest collection of traditional men's clothing with a contemporary touch.">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -36,8 +39,6 @@
                 </div>
             </div>
         </nav>
-        
-        <!-- Search Bar -->
         <div class="search-bar" id="searchBar">
             <div class="search-container">
                 <input type="text" id="searchInput" placeholder="Search products..." onkeyup="searchProducts()">
@@ -47,77 +48,140 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/background-image.png');">
-        <!-- Empty hero banner - just the image -->
-    </section>
-
-    <!-- Hero Content Below Banner -->
-    <section class="hero-content-below">
-        <div class="hero-content">
-            <a href="#products" class="cta-button">Shop Collection</a>
+    <!-- Hero Section with Slideshow -->
+    <section class="hero" id="home">
+        <div class="hero-slide slide-1 active"></div>
+        <div class="hero-slide slide-2"></div>
+        <div class="hero-slide slide-3"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-center-content">
+            <a href="#products" class="hero-outlined-btn">EXPLORE COLLECTION</a>
         </div>
+        <div class="hero-dots">
+            <span class="hero-dot active" onclick="goToSlide(0)"></span>
+            <span class="hero-dot" onclick="goToSlide(1)"></span>
+            <span class="hero-dot" onclick="goToSlide(2)"></span>
+        </div>
+        <div class="hero-scroll-indicator"><span></span></div>
     </section>
 
     <!-- Products Section -->
     <section class="products" id="products">
         <div class="products-header">
-            <button class="filter-btn">
+            <button class="filter-btn" onclick="toggleFilter()">
                 <i class="fas fa-filter"></i>
                 Filter
             </button>
             <div class="sort-dropdown">
-                <select>
-                    <option>Featured</option>
-                    <option>Price: Low to High</option>
-                    <option>Price: High to Low</option>
-                    <option>Newest</option>
+                <select id="sortSelect" onchange="sortProducts()">
+                    <option value="featured">Featured</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="newest">Newest</option>
                 </select>
             </div>
         </div>
-        
-        <div class="products-grid">
-            <div class="product-card">
-                <div class="product-image" style="background-image: url('images/Black1.jpeg');">
-                    <span class="premium-badge">Premium</span>
-                    <button class="wishlist-btn">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <button class="quick-add" onclick="event.stopPropagation(); addToCart('Black Elite Embroidered Men’s Suit', 10999)">Quick Add</button>
-                </div>
-                <div class="product-info">
-                    <h3>Black Elite Embroidered Men’s Suit</h3>
-                    <p class="product-price">Rs. 10,999</p>
+        <div class="filter-panel" id="filterPanel">
+            <div class="filter-section">
+                <h3>Price Range</h3>
+                <div class="filter-options">
+                    <label class="filter-option"><input type="checkbox" name="price" value="0-3000"><span>Under Rs. 3,000</span></label>
+                    <label class="filter-option"><input type="checkbox" name="price" value="3000-5000"><span>Rs. 3,000 - Rs. 5,000</span></label>
+                    <label class="filter-option"><input type="checkbox" name="price" value="5000-10000"><span>Rs. 5,000 - Rs. 10,000</span></label>
+                    <label class="filter-option"><input type="checkbox" name="price" value="10000+"><span>Above Rs. 10,000</span></label>
                 </div>
             </div>
-            
-            <div class="product-card">
+            <div class="filter-section">
+                <h3>Collection</h3>
+                <div class="filter-options">
+                    <label class="filter-option"><input type="checkbox" name="collection" value="premium"><span>Premium Collection</span></label>
+                    <label class="filter-option"><input type="checkbox" name="collection" value="regular"><span>Regular Collection</span></label>
+                </div>
+            </div>
+            <div class="filter-actions">
+                <button class="clear-filters-btn" onclick="clearFilters()">Clear All</button>
+                <button class="apply-filters-btn" onclick="applyFilters()">Apply Filters</button>
+            </div>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+            <div class="product-card" data-product="Black Elite Embroidered Men's Suit" data-price="8000" data-collection="premium">
+                <div class="product-image" style="background-image: url('images/Black1.jpeg');">
+                    <span class="premium-badge">Premium</span>
+                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    <button class="quick-add" onclick="event.stopPropagation(); addToCart('Black Elite Embroidered Men\'s Suit', 8000)">Quick Add</button>
+                </div>
+                <div class="product-info">
+                    <h3>Black Elite Embroidered Men's Suit</h3>
+                    <p class="product-price">Rs. 8,000</p>
+                </div>
+            </div>
+            <div class="product-card" data-product="Amberwood Brown Orange Blended Suit" data-price="3499" data-collection="regular">
                 <div class="product-image" style="background-image: url('images/Brown2.jpeg');">
-                    <button class="wishlist-btn">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <button class="quick-add" onclick="event.stopPropagation(); addToCart('Amberwood Brown Orange Blended Suit', 6750)">Quick Add</button>
+                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    <button class="quick-add" onclick="event.stopPropagation(); addToCart('Amberwood Brown Orange Blended Suit', 3499)">Quick Add</button>
                 </div>
                 <div class="product-info">
                     <h3>Amberwood Brown Orange Blended Suit</h3>
-                    <p class="product-price">Rs. 6,750</p>
+                    <p class="product-price">Rs. 3,499</p>
                 </div>
             </div>
-            
-            <div class="product-card">
+            <div class="product-card" data-product="Olive Regal Stitch Suit" data-price="3299" data-collection="regular">
                 <div class="product-image" style="background-image: url('images/Green1.jpeg');">
-                    <button class="wishlist-btn">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <button class="quick-add" onclick="event.stopPropagation(); addToCart('Olive Regal Stitch Suit', 6350)">Quick Add</button>
+                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    <button class="quick-add" onclick="event.stopPropagation(); addToCart('Olive Regal Stitch Suit', 3299)">Quick Add</button>
                 </div>
                 <div class="product-info">
                     <h3>Olive Regal Stitch Suit</h3>
-                    <p class="product-price">Rs. 6,350</p>
+                    <p class="product-price">Rs. 3,299</p>
+                </div>
+            </div>
+            <div class="product-card" data-product="Black Signature Kurta Trouser Set" data-price="7350" data-collection="premium">
+                <div class="product-image" style="background-image: url('images/blacks1.jpeg');">
+                    <span class="new-in-badge">New In</span>
+                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    <button class="quick-add" onclick="event.stopPropagation(); addToCart('Black Signature Kurta Trouser Set', 7350)">Quick Add</button>
+                </div>
+                <div class="product-info">
+                    <h3>Black Signature Kurta Trouser Set</h3>
+                    <p class="product-price">Rs. 7,350</p>
+                </div>
+            </div>
+            <div class="product-card" data-product="Navy Classic Slim-Fit Suit" data-price="6990" data-collection="regular">
+                <div class="product-image" style="background-image: url('images/Navyblue1.jpeg');">
+                    <span class="new-in-badge">New In</span>
+                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    <button class="quick-add" onclick="event.stopPropagation(); addToCart('Navy Classic Slim-Fit Suit', 6990)">Quick Add</button>
+                </div>
+                <div class="product-info">
+                    <h3>Navy Classic Slim-Fit Suit</h3>
+                    <p class="product-price">Rs. 6,990</p>
+                </div>
+            </div>
+            <div class="product-card" data-product="Arctic White Classic Suit" data-price="6990" data-collection="regular">
+                <div class="product-image" style="background-image: url('images/w1.jpeg');">
+                    <span class="new-in-badge">New In</span>
+                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    <button class="quick-add" onclick="event.stopPropagation(); addToCart('Arctic White Classic Suit', 6990)">Quick Add</button>
+                </div>
+                <div class="product-info">
+                    <h3>Arctic White Classic Suit</h3>
+                    <p class="product-price">Rs. 6,990</p>
+                </div>
+            </div>
+            <div class="product-card" data-product="Ivory Pearl Shalwar Kameez" data-price="7950" data-collection="premium">
+                <div class="product-image" style="background-image: url('images/owhite1.jpeg');">
+                    <span class="new-in-badge">New In</span>
+                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    <button class="quick-add" onclick="event.stopPropagation(); addToCart('Ivory Pearl Shalwar Kameez', 7950)">Quick Add</button>
+                </div>
+                <div class="product-info">
+                    <h3>Ivory Pearl Shalwar Kameez</h3>
+                    <p class="product-price">Rs. 7,950</p>
                 </div>
             </div>
         </div>
-        
+
         <div class="coming-soon-products">
             <h3>More Collections Coming Soon</h3>
             <p>We're working on bringing you more premium eastern wear collections. Stay tuned!</p>
@@ -152,7 +216,7 @@
                 <div class="feature-card">
                     <i class="fas fa-shipping-fast"></i>
                     <h3>Free Shipping</h3>
-                    <p>Complimentary shipping on all orders below Rs. 5000 across Pakistan</p>
+                    <p>Complimentary shipping on all orders above Rs. 5000 across Pakistan</p>
                 </div>
                 <div class="feature-card">
                     <i class="fas fa-medal"></i>
@@ -208,9 +272,9 @@
                 <div class="footer-section">
                     <h3>Follow Us</h3>
                     <div class="social-links">
-                        <a href="https://www.instagram.com/lashaan.official/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.facebook.com/share/17hEgJH57D/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/lashaan.official/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/share/17hEgJH57D/?mibextid=wwXIfr" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
             </div>
@@ -228,23 +292,12 @@
             <button class="close-cart" onclick="toggleCart()">×</button>
         </div>
         <div class="cart-items" id="cartItems">
-            <div class="empty-cart">
-                Your cart is empty
-            </div>
+            <div class="empty-cart">Your cart is empty</div>
         </div>
         <div class="cart-total" id="cartTotal" style="display: none;">
-            <div class="cart-total-row">
-                <span>Subtotal:</span>
-                <span id="subtotal">Rs. 0</span>
-            </div>
-            <div class="cart-total-row">
-                <span>Shipping:</span>
-                <span>Free</span>
-            </div>
-            <div class="cart-total-row total">
-                <span>Total:</span>
-                <span id="total">Rs. 0</span>
-            </div>
+            <div class="cart-total-row"><span>Subtotal:</span><span id="subtotal">Rs. 0</span></div>
+            <div class="cart-total-row"><span>Shipping:</span><span>Free</span></div>
+            <div class="cart-total-row total"><span>Total:</span><span id="total">Rs. 0</span></div>
         </div>
         <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
     </div>
@@ -252,25 +305,16 @@
     <!-- Lightbox Modal -->
     <div class="lightbox" id="lightbox" onclick="closeLightbox()">
         <button class="lightbox-close" onclick="closeLightbox()">×</button>
-        
-        <button class="lightbox-nav lightbox-nav-left" onclick="event.stopPropagation(); navigateLightbox('prev')">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        
+        <button class="lightbox-nav lightbox-nav-left" onclick="event.stopPropagation(); navigateLightbox('prev')"><i class="fas fa-chevron-left"></i></button>
         <div class="lightbox-content" onclick="event.stopPropagation()">
-            <div class="lightbox-image-container">
-                <img id="lightboxImage" src="" alt="">
-            </div>
+            <div class="lightbox-image-container"><img id="lightboxImage" src="" alt=""></div>
             <div class="lightbox-info">
                 <h3 id="lightboxTitle"></h3>
                 <p id="lightboxPrice"></p>
                 <div class="lightbox-indicators" id="lightboxIndicators"></div>
             </div>
         </div>
-        
-        <button class="lightbox-nav lightbox-nav-right" onclick="event.stopPropagation(); navigateLightbox('next')">
-            <i class="fas fa-chevron-right"></i>
-        </button>
+        <button class="lightbox-nav lightbox-nav-right" onclick="event.stopPropagation(); navigateLightbox('next')"><i class="fas fa-chevron-right"></i></button>
     </div>
 
     <!-- Info Modal -->
@@ -287,33 +331,27 @@
         <div class="checkout-modal-content" onclick="event.stopPropagation()">
             <button class="checkout-modal-close" onclick="closeCheckoutModal()">×</button>
             <h2>Complete Your Order</h2>
-            
             <form id="checkoutForm" onsubmit="return submitCheckout(event)">
                 <div class="form-group">
                     <label for="customerName">Full Name *</label>
                     <input type="text" id="customerName" required placeholder="Enter your full name">
                 </div>
-                
                 <div class="form-group">
                     <label for="customerPhone">Phone Number *</label>
                     <input type="tel" id="customerPhone" required placeholder="+92 3XX XXXXXXX" pattern="[0-9+\s-]+">
                 </div>
-                
                 <div class="form-group">
                     <label for="customerAddress">Complete Address *</label>
                     <textarea id="customerAddress" required placeholder="House/Flat no., Street, Area, City" rows="3"></textarea>
                 </div>
-                
                 <div class="form-group">
                     <label for="customerCity">City *</label>
                     <input type="text" id="customerCity" required placeholder="Enter your city">
                 </div>
-                
                 <div class="form-group">
                     <label for="customerNotes">Additional Notes (Optional)</label>
                     <textarea id="customerNotes" placeholder="Any special instructions for delivery" rows="2"></textarea>
                 </div>
-                
                 <div class="payment-info">
                     <h3>Payment Method</h3>
                     <div class="payment-method">
@@ -321,29 +359,59 @@
                         <span>Cash on Delivery (COD)</span>
                     </div>
                 </div>
-                
                 <div class="order-summary">
                     <h3>Order Summary</h3>
-                    <div class="summary-row">
-                        <span>Subtotal:</span>
-                        <span id="checkoutSubtotal">Rs. 0</span>
-                    </div>
-                    <div class="summary-row">
-                        <span>Delivery Charges:</span>
-                        <span id="checkoutDelivery">Rs. 0</span>
-                    </div>
-                    <div class="summary-row total-row">
-                        <span>Total Amount:</span>
-                        <span id="checkoutTotal">Rs. 0</span>
-                    </div>
+                    <div class="summary-row"><span>Subtotal:</span><span id="checkoutSubtotal">Rs. 0</span></div>
+                    <div class="summary-row"><span>Delivery Charges:</span><span id="checkoutDelivery">Rs. 0</span></div>
+                    <div class="summary-row total-row"><span>Total Amount:</span><span id="checkoutTotal">Rs. 0</span></div>
                 </div>
-                
                 <button type="submit" class="submit-order-btn">
-                    <i class="fab fa-whatsapp"></i> Confirm Order via WhatsApp
+                    <i class="fas fa-check-circle"></i> Confirm Order
                 </button>
             </form>
         </div>
     </div>
+
+    <!-- Order Success Modal -->
+    <div class="order-success-modal" id="orderSuccessModal" onclick="closeOrderSuccessModal()">
+        <div class="order-success-content" onclick="event.stopPropagation()">
+            <button class="order-success-close" onclick="closeOrderSuccessModal()">×</button>
+            <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+            <h2>Order Placed Successfully!</h2>
+            <p>Your order #<span id="orderNumber"></span> has been received.</p>
+            <p>We'll contact you shortly to confirm your order.</p>
+            <button class="continue-shopping-btn" onclick="closeOrderSuccessModal()">Continue Shopping</button>
+        </div>
+    </div>
+
+    <!-- Hero Slideshow Script -->
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 3;
+        let slideTimer;
+
+        function goToSlide(index) {
+            const slides = document.querySelectorAll('.hero-slide');
+            const dots = document.querySelectorAll('.hero-dot');
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            currentSlide = index;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+            resetTimer();
+        }
+
+        function nextSlide() {
+            goToSlide((currentSlide + 1) % totalSlides);
+        }
+
+        function resetTimer() {
+            clearInterval(slideTimer);
+            slideTimer = setInterval(nextSlide, 5000);
+        }
+
+        slideTimer = setInterval(nextSlide, 5000);
+    </script>
 
     <script src="js/script.js"></script>
 </body>

@@ -320,8 +320,12 @@ function closeCheckoutModal() {
     document.body.style.overflow = 'auto';
 }
 
-function submitCheckout(event) {
+async function submitCheckout(event) {
     event.preventDefault();
+
+    const submitBtn = document.querySelector('.submit-order-btn');
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Placing Order...';
 
     const name = document.getElementById('customerName').value;
     const phone = document.getElementById('customerPhone').value;
@@ -344,19 +348,32 @@ function submitCheckout(event) {
         date: new Date().toISOString()
     };
 
-    let orders = JSON.parse(localStorage.getItem('lashaanOrders') || '[]');
-    orders.push(order);
-    localStorage.setItem('lashaanOrders', JSON.stringify(orders));
+    try {
+        const response = await fetch('/.netlify/functions/orders', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(order)
+        });
 
-    closeCheckoutModal();
-    document.getElementById('orderNumber').textContent = order.id;
-    openOrderSuccessModal();
+        if (!response.ok) throw new Error('Failed to save order');
 
-    cart = [];
-    cartCount = 0;
-    updateCartDisplay();
-    updateCartCount();
-    document.getElementById('checkoutForm').reset();
+        closeCheckoutModal();
+        document.getElementById('orderNumber').textContent = order.id;
+        openOrderSuccessModal();
+
+        cart = [];
+        cartCount = 0;
+        updateCartDisplay();
+        updateCartCount();
+        document.getElementById('checkoutForm').reset();
+
+    } catch (err) {
+        console.error('Order error:', err);
+        alert('There was an error placing your order. Please try again or contact us directly.');
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Confirm Order';
+    }
 
     return false;
 }
@@ -369,9 +386,18 @@ function closeOrderSuccessModal() {
     document.getElementById('orderSuccessModal').classList.remove('active');
 }
 
-function subscribeNewsletter(event) {
+async function subscribeNewsletter(event) {
     event.preventDefault();
     const email = document.getElementById('newsletterEmail').value;
+    try {
+        await fetch('/.netlify/functions/subscribers', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email })
+        });
+    } catch (err) {
+        console.error('Subscribe error:', err);
+    }
     alert(`Thank you for subscribing with ${email}! We'll keep you updated with our latest collections and offers.`);
     document.getElementById('newsletterEmail').value = '';
     return false;
